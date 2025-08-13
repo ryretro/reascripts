@@ -22,14 +22,15 @@ jobs:
 
       - name: Install reapack-index
         run: luarocks install --server=https://luarocks.org/dev reapack-index
-
+        
       - name: Build index.xml
-        run: reapack-index .
+        run: reapack-index . --generate index.xml --commit
 
       - name: Commit & push updated index.xml
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add index.xml
-          git commit -m "Update ReaPack index [skip ci]" || echo "No changes to commit"
+          git diff --cached --quiet || git commit -m "Update ReaPack index [skip ci]"
           git push
+
