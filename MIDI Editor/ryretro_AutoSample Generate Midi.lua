@@ -1,7 +1,6 @@
 -- @description AutoSample Chromatic MIDI Clip Generator
 -- @version 1.0.0
 -- @author ryretro
--- @category MIDI Tools
 -- @changelog
 --   + Initial release: Generate chromatic MIDI clips with customizable note range, silence (in octaves), note on/off lengths in seconds, velocity, and preview options.
 -- @about
