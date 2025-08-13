@@ -200,7 +200,7 @@ end
 -- Main Loop
 --=============================
 function loop()
-    reaper.ImGui_PushFont(ctx, font)
+    reaper.ImGui_PushFont(ctx, font, 0)
     reaper.ImGui_SetNextWindowSize(ctx, 320, 420, reaper.ImGui_Cond_FirstUseEver())
     local visible, open = reaper.ImGui_Begin(ctx, scriptName, true)
     if visible then
