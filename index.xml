@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<index version="1" commit="4d0a7a4b79fe44cdbf9e9fc320aa661e3ed45bf0">
+<index version="1" commit="4d0a7a4b79fe44cdbf9e9fc320aa661e3ed45bf0" name="ryretro reascripts">
   <category name="MIDI Editor">
     <reapack name="ryretro_AutoSample Generate Midi.lua" type="script" desc="AutoSample Chromatic MIDI Clip Generator">
       <metadata>
