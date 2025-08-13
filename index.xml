@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<index version="1" commit="4d0a7a4b79fe44cdbf9e9fc320aa661e3ed45bf0" name="ryretro reascripts">
+<index version="1" commit="0584004dbf2b2af2b5c8e7cf32c598d96cbd3dc8" name="ryretro reascripts">
   <category name="MIDI Editor">
     <reapack name="ryretro_AutoSample Generate Midi.lua" type="script" desc="AutoSample Chromatic MIDI Clip Generator">
       <metadata>
@@ -15,6 +15,10 @@
       <version name="1.0.0" author="ryretro" time="2025-08-13T01:21:02Z">
         <changelog><![CDATA[+ Initial release: Generate chromatic MIDI clips with customizable note range, silence (in octaves), note on/off lengths in seconds, velocity, and preview options.]]></changelog>
         <source main="midi_editor">https://github.com/ryretro/reascripts/raw/4d0a7a4b79fe44cdbf9e9fc320aa661e3ed45bf0/MIDI%20Editor/ryretro_AutoSample%20Generate%20Midi.lua</source>
+      </version>
+      <version name="1.0.1" author="ryretro" time="2025-08-13T02:03:25Z">
+        <changelog><![CDATA[+ Fixed note lengths being much shorter than intended by converting seconds to beats/PPQ.]]></changelog>
+        <source main="midi_editor">https://github.com/ryretro/reascripts/raw/0584004dbf2b2af2b5c8e7cf32c598d96cbd3dc8/MIDI%20Editor/ryretro_AutoSample%20Generate%20Midi.lua</source>
       </version>
     </reapack>
   </category>
