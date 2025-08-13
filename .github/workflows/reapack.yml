@@ -1,0 +1,35 @@
+name: Build ReaPack index
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  reapack-index:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install Lua
+        uses: leafo/gh-actions-lua@v10
+        with:
+          luaVersion: "5.4"
+
+      - name: Install LuaRocks
+        uses: leafo/gh-actions-luarocks@v4
+
+      - name: Install reapack-index
+        run: luarocks install --server=https://luarocks.org/dev reapack-index
+
+      - name: Build index.xml
+        run: reapack-index .
+
+      - name: Commit & push updated index.xml
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add index.xml
+          git commit -m "Update ReaPack index [skip ci]" || echo "No changes to commit"
+          git push
