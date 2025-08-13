@@ -14,7 +14,7 @@
       </metadata>
       <version name="1.0.0" author="ryretro" time="2025-08-13T01:21:02Z">
         <changelog><![CDATA[+ Initial release: Generate chromatic MIDI clips with customizable note range, silence (in octaves), note on/off lengths in seconds, velocity, and preview options.]]></changelog>
-        <source main="midi_editor">https://github.com/ryretro/reascripts/raw/93d95eddf62d7fd86abcc4ef2916055d39283039/MIDI%20Editor/ryretro_AutoSample%20Generate%20Midi.lua</source>
+        <source main="midi_editor">https://github.com/ryretro/reascripts/raw/4d0a7a4b79fe44cdbf9e9fc320aa661e3ed45bf0/MIDI%20Editor/ryretro_AutoSample%20Generate%20Midi.lua</source>
       </version>
     </reapack>
   </category>
