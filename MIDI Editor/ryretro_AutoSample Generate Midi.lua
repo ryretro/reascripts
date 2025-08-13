@@ -1,8 +1,8 @@
 -- @description AutoSample Chromatic MIDI Clip Generator
--- @version 1.0.0
+-- @version 1.0.1
 -- @author ryretro
 -- @changelog
---   + Initial release: Generate chromatic MIDI clips with customizable note range, silence (in octaves), note on/off lengths in seconds, velocity, and preview options.
+--   + Fixed note lengths being much shorter than intended by converting seconds to beats/PPQ.
 -- @about
 --   This script creates a chromatic MIDI clip for autosampling external instruments.
 --   Features persistent parameters, double-click preview for note sliders, safe MIDI send to selected track, and ReaImGui UI.
@@ -123,6 +123,14 @@ local function inputDoubleReset(label, value, defaultVal, key)
 end
 
 --=============================
+-- Helper: Convert seconds to beats
+--=============================
+local function SecToBeats(seconds)
+    local bpm = reaper.Master_GetTempo()
+    return seconds * (bpm / 60)
+end
+
+--=============================
 -- Main Frame
 --=============================
 function frame()
@@ -175,20 +183,21 @@ function frame()
         local proj = 0
         local selTrack = reaper.GetSelectedTrack(proj, 0)
         if selTrack then
-            local startPos = 0
-            local totalNotes = (endNote - startNote + 1)
-            local totalTime = octSilence * 12 * (noteOnSec + noteOffSec) + totalNotes * (noteOnSec + noteOffSec)
-            local item = reaper.CreateNewMIDIItemInProj(selTrack, startPos, totalTime)
+            local noteOnBeats  = SecToBeats(noteOnSec)
+            local noteOffBeats = SecToBeats(noteOffSec)
+            local totalNotes   = (endNote - startNote + 1)
+            local totalBeats   = (octSilence * 12 * (noteOnBeats + noteOffBeats)) + (totalNotes * (noteOnBeats + noteOffBeats))
+            local totalTime    = reaper.TimeMap2_QNToTime(proj, totalBeats)
+
+            local item = reaper.CreateNewMIDIItemInProj(selTrack, 0, totalTime)
             local take = reaper.GetActiveTake(item)
-            local time = octSilence * 12 * (noteOnSec + noteOffSec)
+
+            local currentQN = octSilence * 12 * (noteOnBeats + noteOffBeats)
             for note = startNote, endNote do
-                local onPos = time
-                local offPos = time + noteOnSec
-                reaper.MIDI_InsertNote(take, false, false,
-                    reaper.TimeMap2_timeToQN(proj, onPos),
-                    reaper.TimeMap2_timeToQN(proj, offPos),
-                    0, note, velocity, false)
-                time = time + noteOnSec + noteOffSec
+                local onPPQ  = reaper.MIDI_GetPPQPosFromProjQN(take, currentQN)
+                local offPPQ = reaper.MIDI_GetPPQPosFromProjQN(take, currentQN + noteOnBeats)
+                reaper.MIDI_InsertNote(take, false, false, onPPQ, offPPQ, 0, note, velocity, false)
+                currentQN = currentQN + noteOnBeats + noteOffBeats
             end
             reaper.MIDI_Sort(take)
         end
