@@ -2,9 +2,7 @@
 <index version="1">
   <category name="MIDI Tools">
     <reapack name="ryretro_AutoSample Generate Midi.lua" type="script" desc="Generate chromatic MIDI clips for autosampling">
-      <source file="scripts/ryretro_AutoSample Generate Midi.lua" type="script">
-        <url>https://raw.githubusercontent.com/ryretro/reascripts/main/scripts/ryretro_AutoSample%20Generate%20Midi.lua</url>
-      </source>
+      <source file="scripts/ryretro_AutoSample Generate Midi.lua" type="script" url="https://raw.githubusercontent.com/ryretro/reascripts/main/scripts/ryretro_AutoSample%20Generate%20Midi.lua" />
     </reapack>
   </category>
 </index>
