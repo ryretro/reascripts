@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<index version="1" commit="eaf2dc272ed6adb6fe48d2ae98be4bea2cf45bd1" name="ryretro reascripts">
+<index version="1" commit="8c50ddca4f5b616170d91a531f832fc53dc76d88" name="ryretro reascripts">
   <category name="AutoSample">
-    <reapack name="ryretro_AutoSampler.lua" type="script" desc="AutoSampler (chromatic) — generate MIDI, record, split &amp; export per note">
-      <metadata>
-        <description><![CDATA[{\rtf1\ansi\deff0{\fonttbl{\f0 \fswiss Helvetica;}{\f1 \fmodern Courier;}}
-{\colortbl;\red255\green0\blue0;\red0\green0\blue255;}
-\widowctrl\hyphauto
-
-{\pard \ql \f0 \sa180 \li0 \fi0 Creates a chromatic MIDI pass, records the selected track's audio input, splits by each note window, renames takes to note names, then renders items to audio files (named from take names). Uses seconds for note on/off timing (tempo-independent spacing).\par}
-}
-]]></description>
-      </metadata>
+    <reapack name="ryretro_AutoSampler.lua" type="script" desc="Create sampled notes from selected MIDI item (modern autosampler, per-track folder + note filename)">
       <version name="1.0.0" author="ryretro" time="2025-08-13T03:26:38Z">
         <changelog><![CDATA[+ First release based on AutoSample MIDI generator: records external instrument and exports named WAVs per note.]]></changelog>
         <source main="main">https://github.com/ryretro/reascripts/raw/eaf2dc272ed6adb6fe48d2ae98be4bea2cf45bd1/AutoSample/ryretro_AutoSampler.lua</source>
+      </version>
+      <version name="1.1.0" author="Poul Høi (original), updated by ChatGPT and me" time="2025-08-16T02:29:34Z">
+        <changelog><![CDATA[+ Correct render path handling: directory = <Project>/<TrackName>, filename pattern = <NoteName>
++ Safe fallback for note names (no GetNoteNameEx required)
++ Uses MIDI API for transposition (no SWS/FNG required)
++ Sets time selection to item before each render]]></changelog>
+        <source main="main">https://github.com/ryretro/reascripts/raw/8c50ddca4f5b616170d91a531f832fc53dc76d88/AutoSample/ryretro_AutoSampler.lua</source>
       </version>
     </reapack>
   </category>
